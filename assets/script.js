@@ -38,10 +38,10 @@ passwordlenght = 0;
 passwordcriteria.passwordlenght = 0;
 result = "";
 
-while (passwordlenght < 8 || passwordlenght> 128) {
+if (passwordlenght < 8 || passwordlenght> 128) {
     passwordlenght = prompt("How many characters do you want your password to be? \choose a number between 8 and 128 characters.");
 // if no number was chosen or user pressed cancel
-    if (passwordlenght === null) {
+   if  (passwordlenght === null) {
         return "Your password";
       }
       
@@ -55,7 +55,7 @@ else {
             showPrompts();
      //keep adding characters based on criteria until passwordlength matches the length the user set
             
-     while (passwordcriteria.passwordlenght < passwordlenght) {
+     if (passwordcriteria.passwordlenght < passwordlenght) {
     //if statement to make sure the user selects at least one of the criteria  
               
     if (lowercase === false && uppercase === false && numbers === false && specialcharacters === false) {
@@ -102,10 +102,10 @@ else {
 return result;
 
 function showPrompts() {
-    lowercase = prompt("Do you want to use lower case letters?");
-    uppercase = prompt("Do you want to use upper case letters?");
-    numbers = prompt("Do you want to use numbers?");
-    specialcharacters = prompt("Do you want to use any special characters?");
+    lowercase = confirm("Do you want to use lower case letters?");
+    uppercase = confirm("Do you want to use upper case letters?");
+    numbers = confirm("Do you want to use numbers?");
+    specialcharacters = confirm("Do you want to use any special characters?");
   }
 }
 generatePassword ();

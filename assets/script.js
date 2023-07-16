@@ -58,7 +58,7 @@ else {
      while (passwordcriteria.passwordlenght < passwordlenght) {
     //if statement to make sure the user selects at least one of the criteria  
               
-    if (lowercase === false && upperCase === false && numbers === false && specialCharacters === false) {
+    if (lowercase === false && uppercase === false && numbers === false && specialcharacters === false) {
                 alert("You must select at least one criteria of lowercase, uppercase, numbers or special characters")
                 showPrompts();
               } 
@@ -66,7 +66,7 @@ else {
                 //is user selected lowercase it will grab lc until there is space left
                 //will update lenght by 1
                 //randomly grabs lc letters from array
-    if (lowercase === true && passwordcriteria.passwordlenght < passwordlength) {
+    if (lowercase === true && passwordcriteria.passwordlenght < passwordlenght) {
                   var lc = passwordcriteria.passwordlowercase[Math.floor(Math.random() * 26)]
                   result = result + lc;
                   passwordcriteria.passwordlenght++;
@@ -74,12 +74,12 @@ else {
             
                 //if user selected sc it will grab sc if theres space
                 //randomly grabs characters from array            
-    if (specialcharacters=== true && passwordcriteria.passwordlenght < passwordlength) {
+    if (specialcharacters=== true && passwordcriteria.passwordlenght < passwordlowercase) {
                   var sc = passwordcriteria.passwordcharacters[Math.floor(Math.random() * 32)]
                   result = result + sc;
                   passwordcriteria.passwordlenght++;
                 } 
-    if (uppercase === true && passwordcriteria.passwordlenght < passwordlength) {
+    if (uppercase === true && passwordcriteria.passwordlenght < passwordlenght) {
                     var uc = passwordcriteria.passworduppdercase[Math.floor(Math.random() * 26)]
                     result = result + uc;
                     passwordcriteria.passwordlenght++;
@@ -102,9 +102,10 @@ else {
 return result;
 
 function showPrompts() {
-    lowercase = confirm("Do you want to use lower case letters?");
-    uppercase = confirm("Do you want to use upper case letters?");
-    numbers = confirm("Do you want to use numbers?");
-    specialcharacters = confirm("Do you want to use any special characters?");
+    lowercase = prompt("Do you want to use lower case letters?");
+    uppercase = prompt("Do you want to use upper case letters?");
+    numbers = prompt("Do you want to use numbers?");
+    specialcharacters = prompt("Do you want to use any special characters?");
   }
 }
+generatePassword ();

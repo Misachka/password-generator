@@ -74,7 +74,7 @@ else {
             
                 //if user selected sc it will grab sc if theres space
                 //randomly grabs characters from array            
-    if (specialcharacters=== true && passwordcriteria.passwordlenght < passwordlowercase) {
+    if (specialcharacters=== true && passwordcriteria.passwordlenght < passwordlenght) {
                   var sc = passwordcriteria.passwordcharacters[Math.floor(Math.random() * 32)]
                   result = result + sc;
                   passwordcriteria.passwordlenght++;
@@ -98,6 +98,7 @@ else {
         }
     } 
 }                
+for (var i = 0; i < passwordlenght; i++)
 
 return result;
 

@@ -1,4 +1,5 @@
 # password-generator
+
 ## Description
 
 This website helps to generate safe random password. By answering few questions user will get a safe and secure password. 
@@ -17,7 +18,7 @@ Do you want to use any special characters?
 
 After answering all questions user will get their random password
 
-Website URL: 
+Deployed site/Website URL: https://misachka.github.io/password-generator/
 
 ![Alt text](image.png)
 

@@ -9,14 +9,16 @@ var passwordcriteria = {
     passworduppdercase: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
     "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
     passwordnumbers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-    passwordcharacters: ["!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",",
-    "-", ".", "/", "\\", ":", ";", "<", ">", "=", "?", "@", "[", "]", "^", "_", "`", "{", "}", "|", "~"],
+    passwordcharacters: ["!", "\"", "#", "$", "%", "&", "(", ")", "*", "+", ",",
+    "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "^", "_", "`", "{", "}", "|", "~"],
 }
-
+// added var, when generating password it will use all password criterias
+var allChosenCharacters = []
 
 // Write password to the #password input
 function writePassword() {
 var password = generatePassword();
+console.log('password: ', password)
 var passwordText = document.querySelector("#password");
 passwordText.value = password;
 }
@@ -70,19 +72,22 @@ else {
                   var lc = passwordcriteria.passwordlowercase[Math.floor(Math.random() * 26)]
                   result = result + lc;
                   passwordcriteria.passwordlenght++;
+                  allChosenCharacters = allChosenCharacters.concat(passwordcriteria.passwordlowercase)
                 }
-            
+      
                 //if user selected sc it will grab sc if theres space
                 //randomly grabs characters from array            
     if (specialcharacters=== true && passwordcriteria.passwordlenght < passwordlenght) {
                   var sc = passwordcriteria.passwordcharacters[Math.floor(Math.random() * 32)]
                   result = result + sc;
                   passwordcriteria.passwordlenght++;
+                  allChosenCharacters = allChosenCharacters.concat(passwordcriteria.passwordcharacters)
                 } 
     if (uppercase === true && passwordcriteria.passwordlenght < passwordlenght) {
                     var uc = passwordcriteria.passworduppdercase[Math.floor(Math.random() * 26)]
                     result = result + uc;
                     passwordcriteria.passwordlenght++;
+                    allChosenCharacters = allChosenCharacters.concat(passwordcriteria.passworduppdercase)
                   }
 
                   //if user selected numbers it will grab sc if theres space
@@ -91,15 +96,20 @@ else {
         var num = passwordcriteria.passwordnumbers[Math.floor(Math.random() * 10)]
         result = result + num;
         passwordcriteria.passwordlenght++;
+        allChosenCharacters = allChosenCharacters.concat(passwordcriteria.passwordnumbers)
                   }
                 }
                 
             }
         }
     } 
+    // for loop so if statement will run until the lengh of password is reached
+    var diff = passwordlenght - result.length
+    for (let i = 0; i < diff; i++) {
+      var index = Math.floor(Math.random() * allChosenCharacters.length)
+      result = result + allChosenCharacters[index] 
+    }
 }                
-for (var i = 0; i < passwordlenght; i++)
-
 return result;
 
 function showPrompts() {
@@ -109,4 +119,4 @@ function showPrompts() {
     specialcharacters = confirm("Do you want to use any special characters?");
   }
 }
-generatePassword ();
+
